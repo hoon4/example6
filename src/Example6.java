@@ -3,10 +3,12 @@ import java.util.Scanner;
 public class Example6 {
     public static void main(String[] args) {
 
-        Menu menu1 = new Menu("김밥", 1, 1000);
-        Menu menu2 = new Menu("계란 김밥", 2, 1500);
-        Menu menu3 = new Menu("충무 김밥", 3, 1000);
-        Menu menu4 = new Menu("떡볶이", 4, 2000);
+        Menu menus[] = {
+                new Menu("김밥", 1, 1000),
+                new Menu("계란 김밥", 2, 1500),
+                new Menu("충무 김밥", 3, 1000),
+                new Menu("떡볶이", 4, 2000)
+        };
 
         // 웰컴함수 welcomePrint
         welcomePrint();
@@ -14,28 +16,26 @@ public class Example6 {
         // 메뉴입력받는 함수 selectMenu
         int selNum = selectMenu();
         int selCount = selectCount();
-        Menu selMenu = null;
+        //Menu selMenu = null;
 
         // 수량입력 함수  selectCount
 
         System.out.println("selCount = " + selCount);
 
         // 메뉴번호 찾기
-        if(selNum == menu1.getId()) {
-            selMenu = menu1;
-        }else if(selNum == menu2.getId()) {
-            selMenu = menu2;
-        }else if(selNum == menu3.getId()) {
-            selMenu = menu3;
-        }else if(selNum == menu4.getId()) {
-            selMenu = menu4;
+        for (Menu menu : menus) {
+            if(selNum == menu.getId()){
+                menu.setCount(selCount);
+                printTotalCost(menu);
+                return;
+            }
         }
-        selMenu.setCount(selCount);
-
-
-        // 주문금액 출력 함수 printTotalCost
-        printTotalCost(selMenu);
-
+//
+//        if(selMenu != null) {
+//            selMenu.setCount(selCount);
+//            // 주문금액 출력 함수 printTotalCost
+//            printTotalCost(selMenu);
+//        }
     }
 
     static void welcomePrint() {
@@ -85,26 +85,3 @@ public class Example6 {
 
 
 }
-
-//[안내]안녕하세요. 김밥천국에 오신 것을 환영합니다.
-//        ------------------------------
-//        [안내]원하시는 메뉴의 번호를 입력하여 주세요.
-//        1) 김밥(1000원) 2) 계란 김밥(1500원) 3) 충무 김밥(1000원) 4) 떡볶이(2000원)
-//        0
-//        [안내]메뉴에 포함된 번호를 입력하여 주세요.
-//
-//        [안내]원하시는 메뉴의 번호를 입력하여 주세요.
-//        1) 김밥(1000원) 2) 계란 김밥(1500원) 3) 충무 김밥(1000원) 4) 떡볶이(2000원)
-//        1
-//        ------------------------------
-//        [안내]선택하신 메뉴의 수량을 입력하여 주세요.
-//        (※ 최대 주문 가능 수량 : 99)
-//        100
-//        [경고]100개는 입력하실 수 없습니다.
-//        [경고]수량 선택 화면으로 돌아갑니다.
-//        ------------------------------
-//        [안내]선택하신 메뉴의 수량을 입력하여 주세요.
-//        (※ 최대 주문 가능 수량 : 99)
-//        10
-//        [안내]주문하신 메뉴의 총 금액은20000원 입니다.
-//        [안내]이용해 주셔서 감사합니다.
