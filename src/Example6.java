@@ -14,19 +14,27 @@ public class Example6 {
         // 메뉴입력받는 함수 selectMenu
         int selNum = selectMenu();
         int selCount = selectCount();
-        int menuCost;
+        Menu selMenu = null;
 
         // 수량입력 함수  selectCount
 
         System.out.println("selCount = " + selCount);
 
-        // 메뉴번호 찾기 findMenuById
+        // 메뉴번호 찾기
         if(selNum == menu1.getId()) {
-            menuCost = menu1.getCost();
+            selMenu = menu1;
+        }else if(selNum == menu2.getId()) {
+            selMenu = menu2;
+        }else if(selNum == menu3.getId()) {
+            selMenu = menu3;
+        }else if(selNum == menu4.getId()) {
+            selMenu = menu4;
         }
+        selMenu.setCount(selCount);
+
 
         // 주문금액 출력 함수 printTotalCost
-
+        printTotalCost(selMenu);
 
     }
 
